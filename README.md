@@ -1,6 +1,6 @@
-# eeeeeeeee
+# vue-music
 
-> A Vue.js project
+> 音乐app
 
 ## Build Setup
 
