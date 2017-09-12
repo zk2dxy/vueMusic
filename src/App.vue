@@ -1,24 +1,27 @@
 <template>
-  <div id="app">
+  <div id="app" @touchmove.prevent>
     <m-header></m-header>
     <tab></tab>
-    <router-view></router-view>
+    <keep-alive>
+      <router-view></router-view>
+    </keep-alive>
+    <player></player>
   </div>
 </template>
 
-<script>
-  import MHeader from 'components/m-header/m-header.vue'
-  import Tab from 'components/tab/tab.vue'
+<script type="text/ecmascript-6">
+  import MHeader from 'components/m-header/m-header'
+  import Player from 'components/player/player'
+  import Tab from 'components/tab/tab'
 
   export default {
-    name: 'app',
     components: {
-      'm-header': MHeader,
-      'tab': Tab
+      MHeader,
+      Tab,
+      Player
     }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
 </style>

@@ -2,15 +2,25 @@ import 'babel-polyfill'
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import 'common/stylus/index.styl'
-import fastClick from 'fastclick'
+import fastclick from 'fastclick'
+import VueLazyload from 'vue-lazyload'
+import store from './store'
 
-Vue.config.productionTip = false
-fastClick.attach(document.body) // 300毫秒延迟问题
+import 'common/stylus/index.styl'
+
+/* eslint-disable no-unused-vars */
+// import vConsole from 'vconsole'
+
+fastclick.attach(document.body)
+
+Vue.use(VueLazyload, {
+  loading: require('common/image/default.png')
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

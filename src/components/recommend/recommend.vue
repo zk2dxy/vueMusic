@@ -40,37 +40,37 @@
   import Slider from 'base/slider/slider'
   import Loading from 'base/loading/loading'
   import Scroll from 'base/scroll/scroll'
-  import { getRecommend, getDiscList } from 'api/recommend'
-  //  import { playlistMixin } from 'common/js/mixin'
-  import { ERR_OK } from 'api/config'
-  import { mapMutations } from 'vuex'
+  import {getRecommend, getDiscList} from 'api/recommend'
+  import {playlistMixin} from 'common/js/mixin'
+  import {ERR_OK} from 'api/config'
+  import {mapMutations} from 'vuex'
 
   export default {
-//    mixins: [playlistMixin],
-    data () {
+    mixins: [playlistMixin],
+    data() {
       return {
         recommends: [],
         discList: []
       }
     },
-    created () {
+    created() {
       this._getRecommend()
 
       this._getDiscList()
     },
-    activated () {
+    activated() {
       setTimeout(() => {
         this.$refs.slider && this.$refs.slider.refresh()
       }, 20)
     },
     methods: {
-      handlePlaylist (playlist) {
+      handlePlaylist(playlist) {
         const bottom = playlist.length > 0 ? '60px' : ''
 
         this.$refs.recommend.style.bottom = bottom
         this.$refs.scroll.refresh()
       },
-      loadImage () {
+      loadImage() {
         if (!this.checkloaded) {
           this.checkloaded = true
           setTimeout(() => {
@@ -78,20 +78,20 @@
           }, 20)
         }
       },
-      selectItem (item) {
+      selectItem(item) {
         this.$router.push({
           path: `/recommend/${item.dissid}`
         })
         this.setDisc(item)
       },
-      _getRecommend () {
+      _getRecommend() {
         getRecommend().then((res) => {
           if (res.code === ERR_OK) {
             this.recommends = res.data.slider
           }
         })
       },
-      _getDiscList () {
+      _getDiscList() {
         getDiscList().then((res) => {
           if (res.code === ERR_OK) {
             this.discList = res.data.list

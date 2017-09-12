@@ -1,10 +1,10 @@
 import jsonp from 'common/js/jsonp'
-import { commonParams, options } from './config'
+import {commonParams, options} from './config'
 import axios from 'axios'
 
 const debug = process.env.NODE_ENV !== 'production'
 
-export function getRecommend () {
+export function getRecommend() {
   const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
 
   const data = Object.assign({}, commonParams, {
@@ -16,7 +16,7 @@ export function getRecommend () {
   return jsonp(url, data, options)
 }
 
-export function getDiscList () {
+export function getDiscList() {
   // 线上环境地址，同学们根据自己的需要配置修改
   const url = debug ? '/api/getDiscList' : 'http://ustbhuangyi.com/music/api/getDiscList'
 
@@ -39,7 +39,7 @@ export function getDiscList () {
   })
 }
 
-export function getSongList (disstid) {
+export function getSongList(disstid) {
   const url = 'https://c.y.qq.com/qzone/fcg-bin/fcg_ucc_getcdinfo_byids_cp.fcg'
 
   const data = Object.assign({}, commonParams, {
